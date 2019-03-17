@@ -43,6 +43,16 @@ Given /^the blog is set up$/ do
                 :state => 'active'})
 end
 
+# add for Given added category
+
+Given /^that Music categories are added$/ do
+    Category.create!({:name => 'Music',
+                    :permalink => 'music',
+                    :keywords => 'Rap, Pop, Dance, Electronic, Classic',
+                    :description => 'This category groups articles that are related to musics.'})
+end
+
+
 And /^I am logged into the admin panel$/ do
   visit '/accounts/login'
   fill_in 'user_login', :with => 'admin'
@@ -54,6 +64,8 @@ And /^I am logged into the admin panel$/ do
     assert page.has_content?('Login successful')
   end
 end
+
+
 
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
